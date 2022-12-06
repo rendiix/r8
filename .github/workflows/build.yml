@@ -43,6 +43,8 @@ jobs:
     - name: Build target images
       id: compile
       run: |
+        git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+        export PATH=$(pwd)/depot_tools:$PATH
         cd r8
         tools/gradle.py r8
 
