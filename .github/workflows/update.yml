@@ -58,6 +58,7 @@ jobs:
 
             ⚙️  memulai proses build
         format: markdown
+        disable_web_page_preview: "True"
 
     - name: Trigger build
       if: steps.cacheHash.outputs.cache-hit != 'true'
