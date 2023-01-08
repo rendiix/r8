@@ -42,6 +42,14 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH r8
         ln -sf /workdir/r8 $GITHUB_WORKSPACE/r8
 
+    - name: notif process
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: "r8: Building target"
+        format: markdown
+
     - name: Building target r8
       id: compile
       run: |
@@ -58,6 +66,14 @@ jobs:
         touch release.txt
         echo "${{ env.useVersionInfo }}" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: notif process
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: | "r8: Creating release"
+        format: markdown
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
