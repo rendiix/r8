@@ -48,7 +48,7 @@ jobs:
       if: steps.cacheHash.outputs.cache-hit == 'true'
       uses: appleboy/telegram-action@master
       with:
-        to: ${{ secrets.TELEGRAM_TO }}
+        to: -1001869558543
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
             ✅ *The job has been completed.*
