@@ -61,6 +61,15 @@ jobs:
         body_path: release.txt
         files: r8/build/libs/r8.jar
 
+    - name: Send to Telegram
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          Test new build ${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}
+        file: r8/build/libs/r8.jar
+
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
