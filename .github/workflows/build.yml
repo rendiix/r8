@@ -46,7 +46,7 @@ jobs:
       id: tag
       run: |
         echo "last_commit=$(git -C r8 rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-        echo "release_tag=$(date +"%Y.%m.%d)" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "${{ env.useVersionInfo }}" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
