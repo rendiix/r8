@@ -45,7 +45,8 @@ jobs:
     - name: Generate release tag
       id: tag
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        echo "last_commit=$(git -C r8 rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d)" >> $GITHUB_OUTPUT
         touch release.txt
         echo "${{ env.useVersionInfo }}" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
@@ -56,7 +57,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
+        tag_name: ${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}
         body_path: release.txt
         files: r8/build/libs/r8.jar
 
