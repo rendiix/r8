@@ -32,7 +32,7 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: r8: Clone source code
+        message: "r8: Clone source code"
         format: markdown
 
     - name: Clone source code
