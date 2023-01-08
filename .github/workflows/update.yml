@@ -51,9 +51,11 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
+            🔗 Repo https://github.com/${{github.repository}}
+
             ✅ *Update versi sumber terdeteksi*
-            #️⃣  Update to  ${{ steps.getHash.outputs.commitHash }}
-            ⚙️ memulai proses build
+            #️⃣  Hash ${{ steps.getHash.outputs.commitHash }}
+            ⚙️  memulai proses build
         format: markdown
         disable_web_page_preview: "True"
 
