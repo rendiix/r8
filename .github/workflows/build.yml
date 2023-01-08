@@ -27,6 +27,14 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
+    - name:
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: r8: Clone source code
+        format: markdown
+
     - name: Clone source code
       working-directory: /workdir
       run: |
@@ -34,7 +42,7 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH r8
         ln -sf /workdir/r8 $GITHUB_WORKSPACE/r8
 
-    - name: Build target images
+    - name: Building target r8
       id: compile
       run: |
         git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
