@@ -50,7 +50,14 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: new commit detected ${{ steps.getHash.outputs.commitHash }}
+        message: |
+            ✅ *The job has been completed.*
+            #️⃣ Run # ${{github.run_number}}. Event type: *${{ github.event_name }}*
+            🧑‍💻 Developer: *${{github.actor}}*
+            🔗 Href: https://github.com/${{github.repository}}
+            format: markdown
+          disable_web_page_preview: "True"
+            #message: new commit detected ${{ steps.getHash.outputs.commitHash }}
 
     - name: Trigger build
       if: steps.cacheHash.outputs.cache-hit != 'true'
