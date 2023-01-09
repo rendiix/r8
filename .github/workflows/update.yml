@@ -50,17 +50,15 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-            🔗 Repo https://github.com/${{github.repository}}
-
-            ✅  *Update versi sumber terdeteksi*
-            #️⃣  Hash ${{ steps.getHash.outputs.commitHash }}
-
-            ⚙️  memulai proses build
-
-            [Source](https://github.com/${{github.repository}})
         format: markdown
         disable_web_page_preview: "True"
+        message: |
+            *1st line of your message with bold*
+            *2nd line of your message with bold, too*
+            Application: *Write something to be put inside your message*. The below lines still are part of your message.          
+            Branch: *${{ github.ref }}*
+            Repository: *${{ github.repository }}*
+            Owner: *${{ github.repository_owner }}*
 
     - name: Trigger build
       if: steps.cacheHash.outputs.cache-hit != 'true'
