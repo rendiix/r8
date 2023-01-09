@@ -33,7 +33,7 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          "r8: Clone source code"
+          ${{ github.event.repository.name }}: Clone source code
         format: markdown
 
     - name: Clone source code
@@ -49,7 +49,7 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          "r8: Building target"
+          ${{ github.event.repository.name }}: Building target
         format: markdown
 
     - name: Building target r8
@@ -65,6 +65,7 @@ jobs:
       run: |
         echo "last_commit=$(git -C r8 rev-parse --short HEAD)" >> $GITHUB_OUTPUT
         echo "release_tag=$(date +"%Y.%m.%d")" >> $GITHUB_OUTPUT
+        echo "release_date=$(date +"%Y/%m/%d")" >> $GITHUB_OUTPUT
         touch release.txt
         echo "${{ env.useVersionInfo }}" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
@@ -75,7 +76,7 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          "r8: Creating release"
+          ${{ github.event.repository.name }}: Creating release
         format: markdown
 
     - name: Upload firmware to release
@@ -94,11 +95,11 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          # TERMUX-R8 TOOLS
-          Updated:$(date +"%Y/%m/%d")
+          ✅ TERMUX-R8 TOOLS
+          Updated: ${{ steps.tag.outputs.release_date }}
 
-          * Tag ${{ steps.tag.outputs.last_commit }}
-          * Download [r8.jar](https://github.com/rendiix/r8/releases/download/${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}/d8.jar)
+          • Tag: ${{ steps.tag.outputs.last_commit }}
+          • Download: [r8.jar](https://github.com/rendiix/r8/releases/download/${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}/r8.jar)
         format: markdown
 
     - name: Delete workflow runs
