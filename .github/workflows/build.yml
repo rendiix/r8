@@ -94,7 +94,11 @@ jobs:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
-          Link https://github.com/rendiix/r8/releases/download/${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}/d8.jar
+          # TERMUX-R8 TOOLS
+          Updated:$(date +"%Y/%m/%d")
+
+          * Tag ${{ steps.tag.outputs.last_commit }}
+          * Download [r8.jar](https://github.com/rendiix/r8/releases/download/${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}/d8.jar)
         format: markdown
 
     - name: Delete workflow runs
