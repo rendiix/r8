@@ -53,15 +53,21 @@ jobs:
         format: markdown
         disable_web_page_preview: "True"
         message: |
-            *1st line of your message with bold*
-            _This italic_
-            ```bash
-            #bin/bash
-            ````
-            Application: *Write something to be put inside your message*. The below lines still are part of your message.          
-            Branch: *${{ github.ref }}*
-            Repository: *${{ github.repository }}*
-            Owner: *${{ github.repository_owner }}*
+          *bold \*text*
+_italic \*text_
+__underline__
+~strikethrough~
+||spoiler||
+*bold _italic bold ~italic bold strikethrough ||italic bold strikethrough spoiler||~ __underline italic bold___ bold*
+[inline URL](http://www.example.com/)
+[inline mention of a user](tg://user?id=123456789)
+`inline fixed-width code`
+```
+pre-formatted fixed-width code block
+```
+```python
+pre-formatted fixed-width code block written in the Python programming language
+```
 
     - name: Trigger build
       if: steps.cacheHash.outputs.cache-hit != 'true'
