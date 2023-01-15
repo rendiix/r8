@@ -80,7 +80,7 @@ jobs:
         format: markdown
 
     - name: Create a release
-      uses: "ncipollo/release-action@v1"
+      uses: ncipollo/release-action@v1
         if: steps.tag.outputs.status == 'success' && !cancelled()
       with:
         name: "Update termux-r8 ${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}"
