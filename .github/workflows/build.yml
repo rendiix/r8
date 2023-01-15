@@ -79,15 +79,15 @@ jobs:
           ${{ github.event.repository.name }}: Creating release
         format: markdown
 
-    - name: Upload firmware to release
-      uses: softprops/action-gh-release@v1
-      if: steps.tag.outputs.status == 'success' && !cancelled()
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create a release
+      uses: "ncipollo/release-action@v1"
+        if: steps.tag.outputs.status == 'success' && !cancelled()
       with:
-        tag_name: "termux-r8 ${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}"
-        body_path: release.txt
-        files: r8/build/libs/r8.jar
+        name: "Update termux-r8 ${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}"
+        tag: "termux-r8-${{ steps.tag.outputs.release_tag }}-${{ steps.tag.outputs.last_commit }}"
+        generateReleaseNotes: true
+        makeLatest: true
+        artifacts: r8/build/libs/r8.jar
 
     - name: Send to Telegram
       uses: appleboy/telegram-action@master
