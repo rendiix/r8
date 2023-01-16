@@ -27,6 +27,15 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
+    - name: Setup Java JDK
+      uses: actions/setup-java@v3.9.0
+        with:
+          distribution: temurin
+          java-version: 8
+
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+
     - name: notif process
       uses: appleboy/telegram-action@master
       with:
