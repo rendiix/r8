@@ -53,7 +53,8 @@ jobs:
         format: markdown
         disable_web_page_preview: "True"
         message: |
-            🔗 Repo https://github.com/${{github.repository}}
+            📁 Termux-r8
+            🔗 Repo: [link](https://github.com/${{github.repository}})
 
             ✅  *Update versi sumber terdeteksi*
             #️⃣  Hash ${{ steps.getHash.outputs.commitHash }}
