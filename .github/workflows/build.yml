@@ -49,6 +49,7 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
+        rm -rf r8
         git clone $REPO_URL -b $REPO_BRANCH r8
         ln -sf /workdir/r8 $GITHUB_WORKSPACE/r8
 
